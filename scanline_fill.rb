@@ -28,7 +28,7 @@ class ScanlineFill
     array
   end
 
-  # we going from left to right
+  # we going to left and to right from start_x and from end_x respectively
   def iterate_stack_horizontally
     begin
       seed = stack.pop
@@ -43,6 +43,7 @@ class ScanlineFill
     end while(stack.any?)
   end
 
+  # fill cells left of start_x
   def left_of(seed)
     start_x = seed.start_x
 
@@ -56,6 +57,7 @@ class ScanlineFill
     start_x
   end
 
+  # fill cells right of end_x
   def right_of(seed)
     end_x = seed.end_x
 
@@ -69,6 +71,7 @@ class ScanlineFill
     end_x
   end
 
+  # move up and down, to fill new lines
   def new_vertical_lines(seed, start_x, end_x)
     if(seed.y > 0)
       add_line(start_x, end_x, seed.y - 1, -1)
@@ -80,7 +83,7 @@ class ScanlineFill
   end
 
   def add_line(start_x, end_x, y, dir)
-    line_start_x = -1 # don't have fill cells on this line
+    line_start_x = -1 # x position of new line
 
     # we can't fill outside bound of parent line
     for x in start_x..end_x do
@@ -94,7 +97,7 @@ class ScanlineFill
       end
     end
 
-    # push last seed
+    # save seed if last operation was filling
     if(line_start_x >= 0)
       stack.push(Seed.new(line_start_x, x, y, dir, line_start_x == start_x, true))
     end
