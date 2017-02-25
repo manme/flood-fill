@@ -1,0 +1,14 @@
+== README
+
+Mail file: scanline_fill.rb
+
+* How to use:
+
+    scan = ScanlineFill.new
+    x = 23
+    y = 45
+    array2 = scan.fill(array1, x, y, 12333)
+
+* Simple view test:
+
+    scanline_fill.rb
