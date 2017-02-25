@@ -1,13 +1,15 @@
 == README
 
-Mail file: scanline_fill.rb
+Main file: scanline_fill.rb
 
 * How to use:
 
+    require './scanline_fill.rb'
     scan = ScanlineFill.new
-    x = 23
-    y = 45
-    array2 = scan.fill(array1, x, y, 12333)
+    x = 0
+    y = 0
+    array1 = [[0,0,0],[1,1,0],[0,0,0]]
+    array2 = scan.fill(array1, x, y, 5)
 
 * Simple view test:
 
